@@ -59,9 +59,12 @@ func (p *Parser) Parse(sentence string) []string {
 	for i, r := range runes {
 		singles[i] = string(r)
 	}
+	if len(runes) == 1 {
+		return []string{singles[0]}
+	}
 
 	baseScore := -p.model.TotalScore() * 0.5
-	chunks := []string{singles[0]}
+	boundaries := []int{0}
 
 	for window := range slidingWindows(runes, singles) {
 		score := baseScore
@@ -102,15 +105,23 @@ func (p *Parser) Parse(sentence string) []string {
 		}
 
 		if score > 0 {
-			chunks = append(chunks, window.curr)
-			continue
+			boundaries = append(boundaries, window.index)
 		}
-		chunks[len(chunks)-1] += window.curr
 	}
-	return chunks
+	boundaries = append(boundaries, len(runes))
+
+	result := make([]string, len(boundaries)-1)
+	for i := 1; i < len(boundaries); i++ {
+		start := boundaries[i-1]
+		end := boundaries[i]
+		result[i-1] = string(runes[start:end])
+	}
+	return result
 }
 
 type runeWindow struct {
+	index int
+
 	prev3    string
 	hasPrev3 bool
 
@@ -156,6 +167,7 @@ func slidingWindows(runes []rune, singles []string) iter.Seq[runeWindow] {
 
 		for i := 1; i < len(runes); i++ {
 			window := runeWindow{
+				index:     i,
 				prev1:     singles[i-1],
 				curr:      singles[i],
 				prev1curr: string(runes[i-1 : i+1]),
