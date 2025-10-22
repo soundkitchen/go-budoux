@@ -1,0 +1,17 @@
+# 一時ビルド成果物
+*.test
+
+# Coverage and profiling data
+coverage.out
+*.prof
+*.pb.gz
+
+# Dependency vendoring
+/vendor/
+
+# Editor and tooling files
+.DS_Store
+*.swp
+.idea/
+.vscode/
+.zed/
