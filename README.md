@@ -1,7 +1,7 @@
 # BudouX for Go
 
 BudouX is a standalone, small, and language-neutral phrase segmenter tool that provides beautiful and legible line breaks.
-This is the Go implementation of [BudouX](https://github.com/google/budoux).
+This fork targets Go 1.23+, adopting the iterator APIs and model optimisations introduced in Go 1.23.
 
 ## Supported Languages
 
@@ -13,7 +13,7 @@ This is the Go implementation of [BudouX](https://github.com/google/budoux).
 ## Installation
 
 ```bash
-go get github.com/google/budoux/golang
+go get github.com/soundkitchen/go-budoux
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ package main
 
 import (
     "fmt"
-    "github.com/google/budoux/golang"
+    budoux "github.com/soundkitchen/go-budoux"
 )
 
 func main() {
@@ -74,13 +74,27 @@ func (p *Parser) Parse(sentence string) []string
 Run the test suite:
 
 ```bash
-go test ./...
+GOCACHE=$(pwd)/.cache go test ./...
 ```
 
 Run tests with verbose output:
 
 ```bash
-go test -v ./...
+GOCACHE=$(pwd)/.cache go test -v ./...
+```
+
+Run the parser benchmark:
+
+```bash
+GOCACHE=$(pwd)/.cache go test -bench=BenchmarkParserParse -benchmem ./...
+```
+
+## Regenerating models
+
+The bundled language models are generated from the upstream BudouX JSON assets. To refresh them, run:
+
+```bash
+GOCACHE=$(pwd)/.cache go generate ./gen
 ```
 
 ## License
