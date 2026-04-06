@@ -21,19 +21,26 @@ import (
 )
 
 type Parser struct {
-	model models.Model
+	model     models.Model
+	baseScore float64
 }
 
 // Create new parser.
 func New(model models.Model) *Parser {
 	return &Parser{
-		model: model,
+		model:     model,
+		baseScore: -model.TotalScore() * 0.5,
 	}
 }
 
 // NewDefaultJapaneseParser returns new Parser with default japanese model.
 func NewDefaultJapaneseParser() *Parser {
 	return New(models.GetDefaultJapaneseModel())
+}
+
+// NewJapaneseKNBCParser returns new Parser with the japanese KNBC base model.
+func NewJapaneseKNBCParser() *Parser {
+	return New(models.GetJapaneseKNBCModel())
 }
 
 // NewDefaultThaiParser returns new Parser with default thai model.
@@ -77,11 +84,10 @@ func (p *Parser) Parse(sentence string) []string {
 		return []string{singles[0]}
 	}
 
-	baseScore := -p.model.TotalScore() * 0.5
 	boundaries := []int{0}
 
 	for window := range slidingWindows(runes, singles) {
-		score := baseScore
+		score := p.baseScore
 		if window.hasPrev3 {
 			score += p.getScore("UW1", window.prev3, 0)
 		}
