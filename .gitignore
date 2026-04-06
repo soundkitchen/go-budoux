@@ -1,5 +1,6 @@
 # 一時ビルド成果物
 *.test
+.cache/
 
 # Coverage and profiling data
 coverage.out

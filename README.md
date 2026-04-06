@@ -2,10 +2,12 @@
 
 BudouX is a standalone, small, and language-neutral phrase segmenter tool that provides beautiful and legible line breaks.
 This fork targets Go 1.23+, adopting the iterator APIs and model optimisations introduced in Go 1.23.
+The bundled models are currently synced against upstream BudouX `v0.8.1`.
 
-## Supported Languages
+## Supported Bundled Models
 
-- Japanese (ja)
+- Japanese default (ja)
+- Japanese KNBC base model (ja_knbc)
 - Simplified Chinese (zh-hans)
 - Traditional Chinese (zh-hant)
 - Thai (th)
@@ -36,9 +38,10 @@ func main() {
 }
 ```
 
-### Supported languages and their default parsers
+### Bundled parser constructors
 
 - Japanese: `budoux.NewDefaultJapaneseParser()`
+- Japanese KNBC base model: `budoux.NewJapaneseKNBCParser()`
 - Simplified Chinese: `budoux.NewDefaultSimplifiedChineseParser()`
 - Traditional Chinese: `budoux.NewDefaultTraditionalChineseParser()`
 - Thai: `budoux.NewDefaultThaiParser()`
@@ -54,6 +57,7 @@ The main interface for text segmentation.
 ```go
 // Create parsers with default models
 func NewDefaultJapaneseParser() *Parser
+func NewJapaneseKNBCParser() *Parser
 func NewDefaultSimplifiedChineseParser() *Parser
 func NewDefaultTraditionalChineseParser() *Parser
 func NewDefaultThaiParser() *Parser
@@ -91,7 +95,7 @@ GOCACHE=$(pwd)/.cache go test -bench=BenchmarkParserParse -benchmem ./...
 
 ## Regenerating models
 
-The bundled language models are generated from the upstream BudouX JSON assets. To refresh them, run:
+The bundled language models are generated from the upstream BudouX `v0.8.1` JSON assets. To refresh them, run:
 
 ```bash
 GOCACHE=$(pwd)/.cache go generate ./gen

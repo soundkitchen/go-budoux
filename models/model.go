@@ -18,6 +18,23 @@ import "maps"
 
 type Model map[string]map[string]float64
 
+// Clone deep-copies the model and all feature groups.
+func (m Model) Clone() Model {
+	if m == nil {
+		return nil
+	}
+
+	cloned := make(Model, len(m))
+	for group, features := range m {
+		groupClone := make(map[string]float64, len(features))
+		for feature, score := range features {
+			groupClone[feature] = score
+		}
+		cloned[group] = groupClone
+	}
+	return cloned
+}
+
 // TotalScore calculates the total score of the model.
 func (m Model) TotalScore() float64 {
 	var total float64
@@ -30,17 +47,21 @@ func (m Model) TotalScore() float64 {
 }
 
 func GetDefaultJapaneseModel() Model {
-	return ja
+	return ja.Clone()
+}
+
+func GetJapaneseKNBCModel() Model {
+	return ja_knbc.Clone()
 }
 
 func GetDefaultThaiModel() Model {
-	return th
+	return th.Clone()
 }
 
 func GetDefaultSimplifiedChineseModel() Model {
-	return zhhans
+	return zhhans.Clone()
 }
 
 func GetDefaultTraditionalChineseModel() Model {
-	return zhhant
+	return zhhant.Clone()
 }

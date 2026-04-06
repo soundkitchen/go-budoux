@@ -18,6 +18,8 @@ import (
 	"fmt"
 	"slices"
 	"testing"
+
+	"github.com/soundkitchen/go-budoux/models"
 )
 
 // tests for parser with default japanese model.
@@ -54,16 +56,133 @@ func TestDefaultJapaneseParser(t *testing.T) {
 	}
 }
 
-// tests for parser with default thai model.
-func TestDefaultThaiParser(t *testing.T) {
-	t.Skipf("Thai parser needs test cases.")
+func TestParserWithCustomModel(t *testing.T) {
+	t.Run("split before a", func(t *testing.T) {
+		p := New(models.Model{
+			"UW4": {
+				"a": 10000,
+			},
+		})
+		actual := p.Parse("abcdeabcd")
+		expected := []string{"abcde", "abcd"}
+		if !slices.Equal(actual, expected) {
+			t.Errorf("Expected %v, but got %v", expected, actual)
+		}
+	})
+
+	t.Run("split before b", func(t *testing.T) {
+		p := New(models.Model{
+			"UW4": {
+				"b": 10000,
+			},
+		})
+		actual := p.Parse("abcdeabcd")
+		expected := []string{"a", "bcdea", "bcd"}
+		if !slices.Equal(actual, expected) {
+			t.Errorf("Expected %v, but got %v", expected, actual)
+		}
+	})
+
+	t.Run("empty input", func(t *testing.T) {
+		p := New(models.Model{})
+		actual := p.Parse("")
+		expected := []string{}
+		if !slices.Equal(actual, expected) {
+			t.Errorf("Expected %v, but got %v", expected, actual)
+		}
+	})
+}
+
+// tests for parser with japanese KNBC base model.
+func TestJapaneseKNBCParser(t *testing.T) {
 	cases := []struct {
 		Sentence string
 		Expected []string
 	}{
 		{
+			Sentence: "気に入っている本をもう一度読んだ。",
+			Expected: []string{
+				"気に",
+				"入っている",
+				"本を",
+				"もう",
+				"一度",
+				"読んだ。",
+			},
+		},
+	}
+	p := NewJapaneseKNBCParser()
+	for i, c := range cases {
+		t.Run(fmt.Sprintf("case %d", i), func(t *testing.T) {
+			actual := p.Parse(c.Sentence)
+			if !slices.Equal(actual, c.Expected) {
+				t.Errorf("Expected %v, but got %v", c.Expected, actual)
+			}
+		})
+	}
+}
+
+// tests for parser with default thai model.
+func TestDefaultThaiParser(t *testing.T) {
+	cases := []struct {
+		Sentence string
+		Expected []string
+	}{
+		{
+			Sentence: "วันนี้อากาศดี",
+			Expected: []string{
+				"วัน",
+				"นี้",
+				"อากาศ",
+				"ดี",
+			},
+		},
+		{
 			Sentence: "ภารกิจของ Google คือการจัดระเบียบข้อมูลของโลก และทำให้ข้อมูลนั้นสามารถเข้าถึงและใช้งานได้สำหรับทุกคนทั่วโลก",
-			Expected: []string{},
+			Expected: []string{
+				"ภาร",
+				"กิจ",
+				"ของ",
+				" ",
+				"Google",
+				" ",
+				"คือ",
+				"การ",
+				"จัดระเบียบ",
+				"ข้อมูล",
+				"ของ",
+				"โลก",
+				" ",
+				"และ",
+				"ทำ",
+				"ให้",
+				"ข้อมูลนั้น",
+				"สามารถ",
+				"เข้า",
+				"ถึง",
+				"และ",
+				"ใช้",
+				"งาน",
+				"ได้",
+				"สำหรับ",
+				"ทุก",
+				"คน",
+				"ทั่ว",
+				"โลก",
+			},
+		},
+		{
+			Sentence: "ฉันชอบอ่านหนังสือในตอนเช้า",
+			Expected: []string{
+				"ฉัน",
+				"ชอบ",
+				"อ่าน",
+				"หนัง",
+				"สือ",
+				"ใน",
+				"ตอน",
+				"เช้า",
+			},
 		},
 	}
 	p := NewDefaultThaiParser()
