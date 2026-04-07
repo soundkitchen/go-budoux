@@ -23,7 +23,7 @@ var ja_knbc = func() Model {
 	m := make(Model, 13)
 	{
 		g := unique.Make("BW1").Value()
-		features := make(map[string]float64, 142)
+		features := make(map[string]int, 142)
 		features[unique.Make("、と").Value()] = 634
 		features[unique.Make("、今").Value()] = 23
 		features[unique.Make("。」").Value()] = 318
@@ -170,7 +170,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("BW2").Value()
-		features := make(map[string]float64, 93)
+		features := make(map[string]int, 93)
 		features[unique.Make("、そ").Value()] = -1469
 		features[unique.Make("、と").Value()] = -991
 		features[unique.Make("、清").Value()] = -676
@@ -268,7 +268,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("BW3").Value()
-		features := make(map[string]float64, 117)
+		features := make(map[string]int, 117)
 		features[unique.Make("あと").Value()] = 329
 		features[unique.Make("ある").Value()] = -243
 		features[unique.Make("いい").Value()] = 989
@@ -390,7 +390,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("TW1").Value()
-		features := make(map[string]float64, 34)
+		features := make(map[string]int, 34)
 		features[unique.Make("、それ").Value()] = 24
 		features[unique.Make("いたい").Value()] = 874
 		features[unique.Make("いった").Value()] = 90
@@ -429,7 +429,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("TW2").Value()
-		features := make(map[string]float64, 20)
+		features := make(map[string]int, 20)
 		features[unique.Make("うにな").Value()] = -238
 		features[unique.Make("えてい").Value()] = 41
 		features[unique.Make("かもし").Value()] = -1010
@@ -454,7 +454,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("TW3").Value()
-		features := make(map[string]float64, 28)
+		features := make(map[string]int, 28)
 		features[unique.Make("、ある").Value()] = -2408
 		features[unique.Make("、なん").Value()] = -14
 		features[unique.Make("、また").Value()] = -993
@@ -487,7 +487,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("TW4").Value()
-		features := make(map[string]float64, 50)
+		features := make(map[string]int, 50)
 		features[unique.Make("あたり").Value()] = -59
 		features[unique.Make("ありま").Value()] = -203
 		features[unique.Make("いえば").Value()] = 499
@@ -542,7 +542,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("UW1").Value()
-		features := make(map[string]float64, 74)
+		features := make(map[string]int, 74)
 		features[unique.Make("、").Value()] = -35
 		features[unique.Make("「").Value()] = -85
 		features[unique.Make("あ").Value()] = 33
@@ -621,7 +621,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("UW2").Value()
-		features := make(map[string]float64, 114)
+		features := make(map[string]int, 114)
 		features[unique.Make("…").Value()] = 212
 		features[unique.Make("、").Value()] = -1519
 		features[unique.Make("。").Value()] = -1208
@@ -740,7 +740,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("UW3").Value()
-		features := make(map[string]float64, 147)
+		features := make(map[string]int, 147)
 		features[unique.Make("”").Value()] = 351
 		features[unique.Make("…").Value()] = 2868
 		features[unique.Make("★").Value()] = 647
@@ -892,7 +892,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("UW4").Value()
-		features := make(map[string]float64, 191)
+		features := make(map[string]int, 191)
 		features[unique.Make("”").Value()] = -962
 		features[unique.Make("…").Value()] = -2878
 		features[unique.Make("−").Value()] = -13
@@ -1088,7 +1088,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("UW5").Value()
-		features := make(map[string]float64, 101)
+		features := make(map[string]int, 101)
 		features[unique.Make("…").Value()] = -28
 		features[unique.Make("　").Value()] = -399
 		features[unique.Make("、").Value()] = -915
@@ -1194,7 +1194,7 @@ var ja_knbc = func() Model {
 	}
 	{
 		g := unique.Make("UW6").Value()
-		features := make(map[string]float64, 83)
+		features := make(map[string]int, 83)
 		features[unique.Make("、").Value()] = 50
 		features[unique.Make("。").Value()] = -368
 		features[unique.Make("い").Value()] = 221

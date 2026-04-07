@@ -23,7 +23,7 @@ var ja = func() Model {
 	m := make(Model, 13)
 	{
 		g := unique.Make("BW1").Value()
-		features := make(map[string]float64, 158)
+		features := make(map[string]int, 158)
 		features[unique.Make("、と").Value()] = 310
 		features[unique.Make("、今").Value()] = 302
 		features[unique.Make("。あ").Value()] = -619
@@ -186,7 +186,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("BW2").Value()
-		features := make(map[string]float64, 124)
+		features := make(map[string]int, 124)
 		features[unique.Make("、そ").Value()] = -1810
 		features[unique.Make("、と").Value()] = -558
 		features[unique.Make("、な").Value()] = -145
@@ -315,7 +315,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("BW3").Value()
-		features := make(map[string]float64, 147)
+		features := make(map[string]int, 147)
 		features[unique.Make("あっ").Value()] = -93
 		features[unique.Make("あの").Value()] = 71
 		features[unique.Make("あり").Value()] = 1053
@@ -467,7 +467,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("TW1").Value()
-		features := make(map[string]float64, 40)
+		features := make(map[string]int, 40)
 		features[unique.Make("、それ").Value()] = 412
 		features[unique.Make("。その").Value()] = 16
 		features[unique.Make("。ただ").Value()] = 676
@@ -512,7 +512,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("TW2").Value()
-		features := make(map[string]float64, 18)
+		features := make(map[string]int, 18)
 		features[unique.Make("うにな").Value()] = -803
 		features[unique.Make("えてい").Value()] = 50
 		features[unique.Make("えるこ").Value()] = -436
@@ -535,7 +535,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("TW3").Value()
-		features := make(map[string]float64, 33)
+		features := make(map[string]int, 33)
 		features[unique.Make("、ある").Value()] = -2756
 		features[unique.Make("、なん").Value()] = -293
 		features[unique.Make("いとこ").Value()] = 75
@@ -573,7 +573,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("TW4").Value()
-		features := make(map[string]float64, 56)
+		features := make(map[string]int, 56)
 		features[unique.Make("あたり").Value()] = -390
 		features[unique.Make("あり、").Value()] = -595
 		features[unique.Make("ありま").Value()] = -1767
@@ -634,7 +634,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("UW1").Value()
-		features := make(map[string]float64, 109)
+		features := make(map[string]int, 109)
 		features[unique.Make("、").Value()] = -26
 		features[unique.Make("。").Value()] = -17
 		features[unique.Make("あ").Value()] = -230
@@ -748,7 +748,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("UW2").Value()
-		features := make(map[string]float64, 139)
+		features := make(map[string]int, 139)
 		features[unique.Make("、").Value()] = -1370
 		features[unique.Make("。").Value()] = -1401
 		features[unique.Make("々").Value()] = 80
@@ -892,7 +892,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("UW3").Value()
-		features := make(map[string]float64, 171)
+		features := make(map[string]int, 171)
 		features[unique.Make("”").Value()] = 215
 		features[unique.Make("…").Value()] = 2428
 		features[unique.Make("☆").Value()] = 2675
@@ -1068,7 +1068,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("UW4").Value()
-		features := make(map[string]float64, 217)
+		features := make(map[string]int, 217)
 		features[unique.Make("”").Value()] = -817
 		features[unique.Make("…").Value()] = -2208
 		features[unique.Make("☆").Value()] = -1296
@@ -1290,7 +1290,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("UW5").Value()
-		features := make(map[string]float64, 121)
+		features := make(map[string]int, 121)
 		features[unique.Make("　").Value()] = -135
 		features[unique.Make("、").Value()] = -1011
 		features[unique.Make("。").Value()] = -2177
@@ -1416,7 +1416,7 @@ var ja = func() Model {
 	}
 	{
 		g := unique.Make("UW6").Value()
-		features := make(map[string]float64, 100)
+		features := make(map[string]int, 100)
 		features[unique.Make("、").Value()] = 180
 		features[unique.Make("。").Value()] = -307
 		features[unique.Make("あ").Value()] = -496

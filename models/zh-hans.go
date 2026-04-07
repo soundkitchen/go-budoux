@@ -23,7 +23,7 @@ var zhhans = func() Model {
 	m := make(Model, 13)
 	{
 		g := unique.Make("BW1").Value()
-		features := make(map[string]float64, 472)
+		features := make(map[string]int, 472)
 		features[unique.Make("——").Value()] = 53
 		features[unique.Make("、新").Value()] = 470
 		features[unique.Make("。”").Value()] = 44
@@ -500,7 +500,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("BW2").Value()
-		features := make(map[string]float64, 690)
+		features := make(map[string]int, 690)
 		features[unique.Make("99").Value()] = -1109
 		features[unique.Make("——").Value()] = -950
 		features[unique.Make("一下").Value()] = -2338
@@ -1195,7 +1195,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("BW3").Value()
-		features := make(map[string]float64, 516)
+		features := make(map[string]int, 516)
 		features[unique.Make("——").Value()] = 1116
 		features[unique.Make("一个").Value()] = 1363
 		features[unique.Make("一九").Value()] = 307
@@ -1716,7 +1716,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("TW1").Value()
-		features := make(map[string]float64, 18)
+		features := make(map[string]int, 18)
 		features[unique.Make("个星期").Value()] = 862
 		features[unique.Make("中国人").Value()] = 518
 		features[unique.Make("伊拉克").Value()] = 426
@@ -1739,7 +1739,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("TW2").Value()
-		features := make(map[string]float64, 17)
+		features := make(map[string]int, 17)
 		features[unique.Make("。这个").Value()] = 909
 		features[unique.Make("中国人").Value()] = -1216
 		features[unique.Make("发言人").Value()] = -235
@@ -1761,7 +1761,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("TW3").Value()
-		features := make(map[string]float64, 13)
+		features := make(map[string]int, 13)
 		features[unique.Make("一方面").Value()] = -1203
 		features[unique.Make("一段时").Value()] = 452
 		features[unique.Make("个时候").Value()] = -200
@@ -1779,7 +1779,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("TW4").Value()
-		features := make(map[string]float64, 8)
+		features := make(map[string]int, 8)
 		features[unique.Make("200").Value()] = 43
 		features[unique.Make("下来，").Value()] = 488
 		features[unique.Make("南街村").Value()] = 429
@@ -1792,7 +1792,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("UW1").Value()
-		features := make(map[string]float64, 461)
+		features := make(map[string]int, 461)
 		features[unique.Make("0").Value()] = -309
 		features[unique.Make("2").Value()] = -50
 		features[unique.Make("O").Value()] = -66
@@ -2258,7 +2258,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("UW2").Value()
-		features := make(map[string]float64, 614)
+		features := make(map[string]int, 614)
 		features[unique.Make("O").Value()] = -59
 		features[unique.Make("S").Value()] = -554
 		features[unique.Make("T").Value()] = -445
@@ -2877,7 +2877,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("UW3").Value()
-		features := make(map[string]float64, 820)
+		features := make(map[string]int, 820)
 		features[unique.Make("0").Value()] = -191
 		features[unique.Make("2").Value()] = -341
 		features[unique.Make("8").Value()] = 10
@@ -3702,7 +3702,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("UW4").Value()
-		features := make(map[string]float64, 885)
+		features := make(map[string]int, 885)
 		features[unique.Make("0").Value()] = -1421
 		features[unique.Make("1").Value()] = 102
 		features[unique.Make("5").Value()] = -381
@@ -4592,7 +4592,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("UW5").Value()
-		features := make(map[string]float64, 621)
+		features := make(map[string]int, 621)
 		features[unique.Make("1").Value()] = 160
 		features[unique.Make("A").Value()] = -263
 		features[unique.Make("S").Value()] = -666
@@ -5218,7 +5218,7 @@ var zhhans = func() Model {
 	}
 	{
 		g := unique.Make("UW6").Value()
-		features := make(map[string]float64, 491)
+		features := make(map[string]int, 491)
 		features[unique.Make("0").Value()] = 186
 		features[unique.Make("e").Value()] = -346
 		features[unique.Make("“").Value()] = 142

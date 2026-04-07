@@ -23,7 +23,7 @@ var th = func() Model {
 	m := make(Model, 13)
 	{
 		g := unique.Make("BW1").Value()
-		features := make(map[string]float64, 272)
+		features := make(map[string]int, 272)
 		features[unique.Make("  ").Value()] = 538
 		features[unique.Make(" '").Value()] = 2309
 		features[unique.Make(" (").Value()] = 3062
@@ -300,7 +300,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("BW2").Value()
-		features := make(map[string]float64, 282)
+		features := make(map[string]int, 282)
 		features[unique.Make("  ").Value()] = -3208
 		features[unique.Make(" (").Value()] = 300
 		features[unique.Make(" 0").Value()] = 920
@@ -587,7 +587,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("BW3").Value()
-		features := make(map[string]float64, 301)
+		features := make(map[string]int, 301)
 		features[unique.Make("  ").Value()] = 405
 		features[unique.Make(" (").Value()] = 31
 		features[unique.Make(" -").Value()] = 539
@@ -893,7 +893,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("TW1").Value()
-		features := make(map[string]float64, 326)
+		features := make(map[string]int, 326)
 		features[unique.Make(" PA").Value()] = 711
 		features[unique.Make(" งง").Value()] = 430
 		features[unique.Make(" ชา").Value()] = 396
@@ -1224,7 +1224,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("TW2").Value()
-		features := make(map[string]float64, 205)
+		features := make(map[string]int, 205)
 		features[unique.Make(". .").Value()] = -1481
 		features[unique.Make("5 ป").Value()] = -324
 		features[unique.Make("55 ").Value()] = -1107
@@ -1434,7 +1434,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("TW3").Value()
-		features := make(map[string]float64, 199)
+		features := make(map[string]int, 199)
 		features[unique.Make("  ม").Value()] = -1513
 		features[unique.Make(" Ho").Value()] = -593
 		features[unique.Make(" Sh").Value()] = -200
@@ -1638,7 +1638,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("TW4").Value()
-		features := make(map[string]float64, 337)
+		features := make(map[string]int, 337)
 		features[unique.Make(" 2").Value()] = -753
 		features[unique.Make(" 20").Value()] = 561
 		features[unique.Make(" 3").Value()] = -150
@@ -1980,7 +1980,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("UW1").Value()
-		features := make(map[string]float64, 71)
+		features := make(map[string]int, 71)
 		features[unique.Make(" ").Value()] = -303
 		features[unique.Make("%").Value()] = -1726
 		features[unique.Make("+").Value()] = -23
@@ -2056,7 +2056,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("UW2").Value()
-		features := make(map[string]float64, 79)
+		features := make(map[string]int, 79)
 		features[unique.Make(" ").Value()] = -743
 		features[unique.Make("!").Value()] = 221
 		features[unique.Make("'").Value()] = -208
@@ -2140,7 +2140,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("UW3").Value()
-		features := make(map[string]float64, 94)
+		features := make(map[string]int, 94)
 		features[unique.Make(" ").Value()] = 4150
 		features[unique.Make("!").Value()] = 2180
 		features[unique.Make("%").Value()] = 476
@@ -2239,7 +2239,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("UW4").Value()
-		features := make(map[string]float64, 110)
+		features := make(map[string]int, 110)
 		features[unique.Make(" ").Value()] = 4562
 		features[unique.Make("!").Value()] = 3001
 		features[unique.Make("%").Value()] = 1299
@@ -2354,7 +2354,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("UW5").Value()
-		features := make(map[string]float64, 80)
+		features := make(map[string]int, 80)
 		features[unique.Make(" ").Value()] = -471
 		features[unique.Make("%").Value()] = -433
 		features[unique.Make(",").Value()] = -134
@@ -2439,7 +2439,7 @@ var th = func() Model {
 	}
 	{
 		g := unique.Make("UW6").Value()
-		features := make(map[string]float64, 71)
+		features := make(map[string]int, 71)
 		features[unique.Make(" ").Value()] = -292
 		features[unique.Make("!").Value()] = -600
 		features[unique.Make("(").Value()] = -1050

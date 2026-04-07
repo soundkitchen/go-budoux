@@ -30,13 +30,13 @@ func TestModelClone(t *testing.T) {
 	cloned["group"]["feature"] = 2
 
 	if original["group"]["feature"] != 1 {
-		t.Fatalf("Clone should deep copy nested maps; original was mutated to %f", original["group"]["feature"])
+		t.Fatalf("Clone should deep copy nested maps; original was mutated to %d", original["group"]["feature"])
 	}
 }
 
 func TestModelTotalScore(t *testing.T) {
 	cases := []struct {
-		Expected float64
+		Expected int
 		Model    Model
 	}{
 		{
@@ -57,7 +57,7 @@ func TestModelTotalScore(t *testing.T) {
 		t.Run(fmt.Sprintf("case %d", i), func(t *testing.T) {
 			score := c.Model.TotalScore()
 			if score != c.Expected {
-				t.Errorf("Expected %f, got %f", c.Expected, score)
+				t.Errorf("Expected %d, got %d", c.Expected, score)
 			}
 		})
 	}
@@ -69,7 +69,7 @@ func TestGetDefaultJapaneseModelReturnsClone(t *testing.T) {
 	var (
 		groupKey   string
 		featureKey string
-		original   float64
+		original   int
 		found      bool
 	)
 	for group, features := range modelA {
@@ -91,6 +91,6 @@ func TestGetDefaultJapaneseModelReturnsClone(t *testing.T) {
 	modelA[groupKey][featureKey] = original + 1
 	modelB := GetDefaultJapaneseModel()
 	if modelB[groupKey][featureKey] != original {
-		t.Fatalf("default model should be cloned; expected %f, got %f", original, modelB[groupKey][featureKey])
+		t.Fatalf("default model should be cloned; expected %d, got %d", original, modelB[groupKey][featureKey])
 	}
 }
