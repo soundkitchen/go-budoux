@@ -106,6 +106,84 @@ func TestParserWithCustomModel(t *testing.T) {
 	})
 }
 
+func TestParserWithInvalidUTF8CustomModel(t *testing.T) {
+	b0xff := string([]byte{0xff})
+	b0xfe := string([]byte{0xfe})
+	b0xfd := string([]byte{0xfd})
+
+	t.Run("uw4 keeps distinct invalid byte keys", func(t *testing.T) {
+		p := New(models.Model{
+			"UW4": {
+				b0xff: 0,
+				b0xfe: 1,
+			},
+		})
+		if len(p.uw4) != 0 {
+			t.Fatalf("expected typed unigram map to stay empty for invalid UTF-8 keys, got %d entries", len(p.uw4))
+		}
+		if len(p.uw4Raw) != 2 {
+			t.Fatalf("expected raw unigram map to keep 2 entries, got %d", len(p.uw4Raw))
+		}
+		if p.uw4Raw[b0xff] != 0 || p.uw4Raw[b0xfe] != 1 {
+			t.Fatalf("expected raw unigram map to preserve both invalid keys, got %#v", p.uw4Raw)
+		}
+
+		actual := p.Parse(b0xff + b0xfe)
+		expected := []string{b0xff, b0xfe}
+		if !slices.Equal(actual, expected) {
+			t.Errorf("Expected %v, but got %v", expected, actual)
+		}
+	})
+
+	t.Run("bw2 keeps distinct invalid byte keys", func(t *testing.T) {
+		p := New(models.Model{
+			"BW2": {
+				b0xff + b0xfe: 1,
+				b0xfe + b0xff: 0,
+			},
+		})
+		if len(p.bw2) != 0 {
+			t.Fatalf("expected typed bigram map to stay empty for invalid UTF-8 keys, got %d entries", len(p.bw2))
+		}
+		if len(p.bw2Raw) != 2 {
+			t.Fatalf("expected raw bigram map to keep 2 entries, got %d", len(p.bw2Raw))
+		}
+		if p.bw2Raw[b0xff+b0xfe] != 1 || p.bw2Raw[b0xfe+b0xff] != 0 {
+			t.Fatalf("expected raw bigram map to preserve both invalid keys, got %#v", p.bw2Raw)
+		}
+
+		actual := p.Parse(b0xff + b0xfe)
+		expected := []string{b0xff, b0xfe}
+		if !slices.Equal(actual, expected) {
+			t.Errorf("Expected %v, but got %v", expected, actual)
+		}
+	})
+
+	t.Run("tw2 keeps distinct invalid byte keys", func(t *testing.T) {
+		p := New(models.Model{
+			"TW2": {
+				b0xff + b0xfe + b0xfd: 1,
+				b0xfe + b0xff + b0xfd: 0,
+			},
+		})
+		if len(p.tw2) != 0 {
+			t.Fatalf("expected typed trigram map to stay empty for invalid UTF-8 keys, got %d entries", len(p.tw2))
+		}
+		if len(p.tw2Raw) != 2 {
+			t.Fatalf("expected raw trigram map to keep 2 entries, got %d", len(p.tw2Raw))
+		}
+		if p.tw2Raw[b0xff+b0xfe+b0xfd] != 1 || p.tw2Raw[b0xfe+b0xff+b0xfd] != 0 {
+			t.Fatalf("expected raw trigram map to preserve both invalid keys, got %#v", p.tw2Raw)
+		}
+
+		actual := p.Parse(b0xff + b0xfe + b0xfd)
+		expected := []string{b0xff + b0xfe, b0xfd}
+		if !slices.Equal(actual, expected) {
+			t.Errorf("Expected %v, but got %v", expected, actual)
+		}
+	})
+}
+
 // tests for parser with japanese KNBC base model.
 func TestJapaneseKNBCParser(t *testing.T) {
 	cases := []struct {
