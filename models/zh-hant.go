@@ -23,7 +23,7 @@ var zhhant = func() Model {
 	m := make(Model, 13)
 	{
 		g := unique.Make("BW1").Value()
-		features := make(map[string]float64, 475)
+		features := make(map[string]int, 475)
 		features[unique.Make("**").Value()] = 1221
 		features[unique.Make("--").Value()] = 1751
 		features[unique.Make("‧１").Value()] = 112
@@ -503,7 +503,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("BW2").Value()
-		features := make(map[string]float64, 640)
+		features := make(map[string]int, 640)
 		features[unique.Make("**").Value()] = -6143
 		features[unique.Make("--").Value()] = -3041
 		features[unique.Make("-２").Value()] = 787
@@ -1148,7 +1148,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("BW3").Value()
-		features := make(map[string]float64, 503)
+		features := make(map[string]int, 503)
 		features[unique.Make("%，").Value()] = 1443
 		features[unique.Make("%１").Value()] = -951
 		features[unique.Make(")。").Value()] = 323
@@ -1656,7 +1656,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("TW1").Value()
-		features := make(map[string]float64, 19)
+		features := make(map[string]int, 19)
 		features[unique.Make("一九九").Value()] = -1376
 		features[unique.Make("三十分").Value()] = -156
 		features[unique.Make("二十一").Value()] = -36
@@ -1680,7 +1680,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("TW2").Value()
-		features := make(map[string]float64, 13)
+		features := make(map[string]int, 13)
 		features[unique.Make("十一日").Value()] = -467
 		features[unique.Make("十七日").Value()] = -329
 		features[unique.Make("十九日").Value()] = -387
@@ -1698,7 +1698,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("TW3").Value()
-		features := make(map[string]float64, 6)
+		features := make(map[string]int, 6)
 		features[unique.Make("三十一").Value()] = 219
 		features[unique.Make("主進步").Value()] = -557
 		features[unique.Make("十分，").Value()] = -31
@@ -1709,7 +1709,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("TW4").Value()
-		features := make(map[string]float64, 12)
+		features := make(map[string]int, 12)
 		features[unique.Make("公尺小").Value()] = 582
 		features[unique.Make("國民黨").Value()] = 721
 		features[unique.Make("在台北").Value()] = 110
@@ -1726,7 +1726,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("UW1").Value()
-		features := make(map[string]float64, 501)
+		features := make(map[string]int, 501)
 		features[unique.Make("%").Value()] = 442
 		features[unique.Make("(").Value()] = -351
 		features[unique.Make(")").Value()] = 148
@@ -2232,7 +2232,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("UW2").Value()
-		features := make(map[string]float64, 651)
+		features := make(map[string]int, 651)
 		features[unique.Make("%").Value()] = -745
 		features[unique.Make("(").Value()] = -888
 		features[unique.Make(")").Value()] = -606
@@ -2888,7 +2888,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("UW3").Value()
-		features := make(map[string]float64, 871)
+		features := make(map[string]int, 871)
 		features[unique.Make("%").Value()] = 2051
 		features[unique.Make("(").Value()] = -4223
 		features[unique.Make(")").Value()] = 2869
@@ -3764,7 +3764,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("UW4").Value()
-		features := make(map[string]float64, 851)
+		features := make(map[string]int, 851)
 		features[unique.Make("%").Value()] = 17
 		features[unique.Make("(").Value()] = 4042
 		features[unique.Make(")").Value()] = -3426
@@ -4620,7 +4620,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("UW5").Value()
-		features := make(map[string]float64, 645)
+		features := make(map[string]int, 645)
 		features[unique.Make("%").Value()] = -119
 		features[unique.Make("(").Value()] = -1008
 		features[unique.Make(")").Value()] = -1175
@@ -5270,7 +5270,7 @@ var zhhant = func() Model {
 	}
 	{
 		g := unique.Make("UW6").Value()
-		features := make(map[string]float64, 514)
+		features := make(map[string]int, 514)
 		features[unique.Make("%").Value()] = -436
 		features[unique.Make("(").Value()] = 140
 		features[unique.Make(")").Value()] = -85

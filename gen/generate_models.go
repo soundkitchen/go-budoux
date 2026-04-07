@@ -68,7 +68,7 @@ var {{.Name}} = func() Model {
 	{{- range $k, $g := .Data}}
 	{
 		g := unique.Make("{{$k}}").Value()
-		features := make(map[string]float64, {{len $g}})
+		features := make(map[string]int, {{len $g}})
 		{{- range $w, $s := $g}}
 		features[unique.Make("{{$w}}").Value()] = {{$s}}
 		{{- end}}

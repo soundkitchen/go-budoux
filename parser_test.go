@@ -91,6 +91,19 @@ func TestParserWithCustomModel(t *testing.T) {
 			t.Errorf("Expected %v, but got %v", expected, actual)
 		}
 	})
+
+	t.Run("odd total score keeps the same boundary decision", func(t *testing.T) {
+		p := New(models.Model{
+			"UW4": {
+				"b": 1,
+			},
+		})
+		actual := p.Parse("ab")
+		expected := []string{"a", "b"}
+		if !slices.Equal(actual, expected) {
+			t.Errorf("Expected %v, but got %v", expected, actual)
+		}
+	})
 }
 
 // tests for parser with japanese KNBC base model.

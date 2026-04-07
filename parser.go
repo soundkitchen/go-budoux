@@ -22,30 +22,34 @@ import (
 
 type Parser struct {
 	model     models.Model
-	baseScore float64
+	scoreBias int
 
-	uw1 map[string]float64
-	uw2 map[string]float64
-	uw3 map[string]float64
-	uw4 map[string]float64
-	uw5 map[string]float64
-	uw6 map[string]float64
+	uw1 map[string]int
+	uw2 map[string]int
+	uw3 map[string]int
+	uw4 map[string]int
+	uw5 map[string]int
+	uw6 map[string]int
 
-	bw1 map[string]float64
-	bw2 map[string]float64
-	bw3 map[string]float64
+	bw1 map[string]int
+	bw2 map[string]int
+	bw3 map[string]int
 
-	tw1 map[string]float64
-	tw2 map[string]float64
-	tw3 map[string]float64
-	tw4 map[string]float64
+	tw1 map[string]int
+	tw2 map[string]int
+	tw3 map[string]int
+	tw4 map[string]int
 }
 
 // Create new parser.
 func New(model models.Model) *Parser {
+	// BudouX uses -TotalScore/2 as the decision threshold.
+	// Some bundled models have an odd total score, so rounding that threshold to
+	// an integer would change segmentation results. Instead we scale the whole
+	// comparison by 2 and compare against an integer bias: 2*score > 0.
 	return &Parser{
 		model:     model,
-		baseScore: -model.TotalScore() * 0.5,
+		scoreBias: -model.TotalScore(),
 		uw1:       model["UW1"],
 		uw2:       model["UW2"],
 		uw3:       model["UW3"],
@@ -87,7 +91,7 @@ func NewDefaultTraditionalChineseParser() *Parser {
 	return New(models.GetDefaultTraditionalChineseModel())
 }
 
-func lookupScore(group map[string]float64, key string) float64 {
+func lookupScore(group map[string]int, key string) int {
 	if group == nil {
 		return 0
 	}
@@ -113,41 +117,41 @@ func (p *Parser) Parse(sentence string) []string {
 	boundaries := make([]int, 1, len(offsets))
 
 	for i := 1; i < len(offsets)-1; i++ {
-		score := p.baseScore
+		score := p.scoreBias
 		if i > 2 {
-			score += lookupScore(p.uw1, sentence[offsets[i-3]:offsets[i-2]])
+			score += 2 * lookupScore(p.uw1, sentence[offsets[i-3]:offsets[i-2]])
 		}
 		if i > 1 {
-			score += lookupScore(p.uw2, sentence[offsets[i-2]:offsets[i-1]])
+			score += 2 * lookupScore(p.uw2, sentence[offsets[i-2]:offsets[i-1]])
 		}
-		score += lookupScore(p.uw3, sentence[offsets[i-1]:offsets[i]])
-		score += lookupScore(p.uw4, sentence[offsets[i]:offsets[i+1]])
+		score += 2 * lookupScore(p.uw3, sentence[offsets[i-1]:offsets[i]])
+		score += 2 * lookupScore(p.uw4, sentence[offsets[i]:offsets[i+1]])
 		if i+1 < len(offsets)-1 {
-			score += lookupScore(p.uw5, sentence[offsets[i+1]:offsets[i+2]])
+			score += 2 * lookupScore(p.uw5, sentence[offsets[i+1]:offsets[i+2]])
 		}
 		if i+2 < len(offsets)-1 {
-			score += lookupScore(p.uw6, sentence[offsets[i+2]:offsets[i+3]])
+			score += 2 * lookupScore(p.uw6, sentence[offsets[i+2]:offsets[i+3]])
 		}
 
 		if i > 1 {
-			score += lookupScore(p.bw1, sentence[offsets[i-2]:offsets[i]])
+			score += 2 * lookupScore(p.bw1, sentence[offsets[i-2]:offsets[i]])
 		}
-		score += lookupScore(p.bw2, sentence[offsets[i-1]:offsets[i+1]])
+		score += 2 * lookupScore(p.bw2, sentence[offsets[i-1]:offsets[i+1]])
 		if i+1 < len(offsets)-1 {
-			score += lookupScore(p.bw3, sentence[offsets[i]:offsets[i+2]])
+			score += 2 * lookupScore(p.bw3, sentence[offsets[i]:offsets[i+2]])
 		}
 
 		if i > 2 {
-			score += lookupScore(p.tw1, sentence[offsets[i-3]:offsets[i]])
+			score += 2 * lookupScore(p.tw1, sentence[offsets[i-3]:offsets[i]])
 		}
 		if i > 1 {
-			score += lookupScore(p.tw2, sentence[offsets[i-2]:offsets[i+1]])
+			score += 2 * lookupScore(p.tw2, sentence[offsets[i-2]:offsets[i+1]])
 		}
 		if i+1 < len(offsets)-1 {
-			score += lookupScore(p.tw3, sentence[offsets[i-1]:offsets[i+2]])
+			score += 2 * lookupScore(p.tw3, sentence[offsets[i-1]:offsets[i+2]])
 		}
 		if i+2 < len(offsets)-1 {
-			score += lookupScore(p.tw4, sentence[offsets[i]:offsets[i+3]])
+			score += 2 * lookupScore(p.tw4, sentence[offsets[i]:offsets[i+3]])
 		}
 
 		if score > 0 {

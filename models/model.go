@@ -16,7 +16,7 @@ package models
 
 import "maps"
 
-type Model map[string]map[string]float64
+type Model map[string]map[string]int
 
 // Clone deep-copies the model and all feature groups.
 func (m Model) Clone() Model {
@@ -26,7 +26,7 @@ func (m Model) Clone() Model {
 
 	cloned := make(Model, len(m))
 	for group, features := range m {
-		groupClone := make(map[string]float64, len(features))
+		groupClone := make(map[string]int, len(features))
 		for feature, score := range features {
 			groupClone[feature] = score
 		}
@@ -36,8 +36,8 @@ func (m Model) Clone() Model {
 }
 
 // TotalScore calculates the total score of the model.
-func (m Model) TotalScore() float64 {
-	var total float64
+func (m Model) TotalScore() int {
+	var total int
 	for group := range maps.Values(m) {
 		for score := range maps.Values(group) {
 			total += score
